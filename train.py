@@ -41,12 +41,12 @@ def train(epoch):
         # p-step ahead loss
         loss = loss_function(output, y[:, :, -horizon:])
 
-        train_output = torch.cat([train_output, output], 0)  # 取多点作为预测结果
+        train_output = torch.cat([train_output, output], 0) 
         train_actual = torch.cat([train_actual, y[:, :, -horizon:]], 0)
 
         loss.backward()
         if args.clip > 0:
-            torch.nn.utils.clip_grad_norm(model.parameters(), args.clip)  # 梯度裁剪
+            torch.nn.utils.clip_grad_norm(model.parameters(), args.clip)  
         optimizer.step()
         batch_idx += 1
         total_loss += loss.item()
@@ -105,7 +105,7 @@ def eval_training(epoch):
 
             # p-step ahead loss
             loss = loss_function(output, y[:, :, -horizon:])
-            val_output = torch.cat([val_output, output], 0)  # 取单点作为预测结果
+            val_output = torch.cat([val_output, output], 0) 
             val_actual = torch.cat([val_actual, y[:, :, -horizon:]], 0)
 
             batch_idx += 1
