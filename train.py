@@ -248,7 +248,6 @@ if __name__ == '__main__':
             torch.save(model.state_dict(), checkpoint_path.format(model=args.model, horizon=str(horizon), loss=args.loss))
 
     print(f'Best val epoch: {best_epoch}')
-    # 存储结果
 
     sheet1 = pd.DataFrame({
         'training output value': train_output_best[:, 0].tolist(),
